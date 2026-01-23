@@ -7,6 +7,9 @@ public class SpaceHeater {
 
     public static void main(String[] args) {
         int cores = (Runtime.getRuntime().availableProcessors() / 2)  - 2;
+        if (cores < 1) {
+            cores = 1;
+        }
         System.out.println("Starting SpaceHeater on " + cores + " cores.");
         System.out.println("Press Ctrl+C to stop.");
 
