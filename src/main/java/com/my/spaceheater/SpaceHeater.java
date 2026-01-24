@@ -5,6 +5,13 @@ import java.util.concurrent.Executors;
 
 public class SpaceHeater {
 
+    /**
+     * The purpose of this program is to make the CPU perform continuous, intensive computations
+     * to generate heat, warming up a cold room. The calculation `Math.tan(Math.atan(Math.pow(val, 1.000001)))`
+     * is intentionally complex and seemingly redundant to consume CPU cycles.
+     *
+     * @param args Command line arguments (not used).
+     */
     public static void main(String[] args) {
         int cores = (Runtime.getRuntime().availableProcessors() / 2)  - 2;
         System.out.println("Starting SpaceHeater on " + cores + " cores.");
