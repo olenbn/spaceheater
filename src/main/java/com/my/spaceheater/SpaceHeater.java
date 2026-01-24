@@ -6,10 +6,7 @@ import java.util.concurrent.Executors;
 public class SpaceHeater {
 
     public static void main(String[] args) {
-        int cores = (Runtime.getRuntime().availableProcessors() / 2)  - 2;
-        if (cores < 1) {
-            cores = 1;
-        }
+        int cores = getTargetCoreCount();
         System.out.println("Starting SpaceHeater on " + cores + " cores.");
         System.out.println("Press Ctrl+C to stop.");
 
@@ -17,6 +14,7 @@ public class SpaceHeater {
 
         for (int i = 0; i < cores; i++) {
             executor.execute(() -> {
+                Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
                 while (true) {
                     // Perform intensive calculation
                     double val = 1000.0;
@@ -27,5 +25,8 @@ public class SpaceHeater {
             });
         }
     }
-}
 
+    private static int getTargetCoreCount() {
+        return Math.max(1, (Runtime.getRuntime().availableProcessors() / 2) - 2);
+    }
+}
