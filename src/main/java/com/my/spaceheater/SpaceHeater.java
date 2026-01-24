@@ -13,7 +13,7 @@ public class SpaceHeater {
      * @param args Command line arguments (not used).
      */
     public static void main(String[] args) {
-        int cores = (Runtime.getRuntime().availableProcessors() / 2)  - 2;
+        int cores = Runtime.getRuntime().availableProcessors();
         System.out.println("Starting SpaceHeater on " + cores + " cores.");
         System.out.println("Press Ctrl+C to stop.");
 
@@ -21,6 +21,7 @@ public class SpaceHeater {
 
         for (int i = 0; i < cores; i++) {
             executor.execute(() -> {
+                Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
                 while (true) {
                     // Perform intensive calculation
                     double val = 1000.0;
@@ -32,4 +33,3 @@ public class SpaceHeater {
         }
     }
 }
-
