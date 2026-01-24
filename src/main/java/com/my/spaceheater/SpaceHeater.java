@@ -18,7 +18,7 @@ public class SpaceHeater {
                     // Perform intensive calculation
                     double val = 1000.0;
                     for (int j = 0; j < 1000; j++) {
-                        val = Math.tan(Math.atan(Math.pow(val, 1.000001)));
+                        val = Math.pow(val, 1.000001);
                     }
                 }
             });
