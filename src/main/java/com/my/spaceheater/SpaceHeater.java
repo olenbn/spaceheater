@@ -26,6 +26,15 @@ public class SpaceHeater {
         }
     }
 
+    /**
+     * Calculates the target number of cores to use.
+     * <p>
+     * The formula attempts to account for hyperthreading by dividing the available processors by 2.
+     * It then subtracts 2 to leave roughly one physical core free for the system to remain responsive.
+     * </p>
+     *
+     * @return the number of threads to spawn, with a minimum of 1.
+     */
     private static int getTargetCoreCount() {
         return Math.max(1, (Runtime.getRuntime().availableProcessors() / 2) - 2);
     }
